@@ -1,0 +1,12 @@
+flowchart LR
+    classDef header fill:none,stroke:none,font-size:22px,font-weight:bold,text-align:center
+    daas["AWS Landing Zone – Multi-Account"]:::header
+
+    org["<img src='https://api.iconify.design/mdi/cloud-lock.svg' width='38'><br/>Org&nbsp;Root / Payer"]
+    log["<img src='https://api.iconify.design/mdi/file-lock.svg' width='36'><br/>Log&nbsp;Archive"]
+    sec["<img src='https://api.iconify.design/mdi/shield-key.svg' width='36'><br/>Security"]
+    shared["<img src='https://api.iconify.design/mdi/server.svg' width='36'><br/>Shared&nbsp;Svcs"]
+    dev["<img src='https://api.iconify.design/mdi/flask.svg' width='34'><br/>Dev&nbsp;Account"]
+    prod["<img src='https://api.iconify.design/mdi/rocket.svg' width='34'><br/>Prod&nbsp;Account"]
+
+    org --> log & sec & shared & dev & prod

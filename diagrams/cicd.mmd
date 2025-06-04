@@ -1,0 +1,16 @@
+flowchart LR
+    classDef header fill:none,stroke:none,font-size:22px,font-weight:bold,text-align:center
+    daas["CI/CD Pipeline – Zero Downtime"]:::header
+
+    dev["<img src='https://api.iconify.design/fa6-solid/user.svg' width='34'><br/>Developer"]
+    gitlab["<img src='https://api.iconify.design/logos/gitlab.svg' width='40'><br/>GitLab&nbsp;CI/CD"]
+    argo["<img src='https://api.iconify.design/logos/argocd-icon.svg' width='40'><br/>ArgoCD"]
+    k8s["<img src='https://api.iconify.design/logos/kubernetes.svg' width='40'><br/>Prod&nbsp;Cluster"]
+    graf["<img src='https://api.iconify.design/logos/grafana.svg' width='38'><br/>Grafana"]
+    prom["<img src='https://api.iconify.design/logos/prometheus.svg' width='38'><br/>Prometheus"]
+    loki["<img src='https://api.iconify.design/logos/loki.svg' width='38'><br/>Loki"]
+
+    dev --> gitlab --> argo --> k8s
+    k8s --> graf
+    k8s --> prom
+    k8s --> loki
