@@ -18,4 +18,4 @@ zero-downtime roll-outs, rescue windows and cluster hardening.
 ## 🚀 Live Diagram – CI → CD → Clusters
 
 ```mermaid
-{{ read_file("diagrams/cicd.mmd") }}
+{{ read_file("diagrams/aws-landing-zone.mmd") }}
