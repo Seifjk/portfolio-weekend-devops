@@ -1,6 +1,6 @@
 # Weekend-Only DevOps Consulting
 
-I’m **Shili Seif Eddine** – a senior DevOps/SRE engineer who helps teams achieve
+I’m **Seif Eddine Shili** – a senior DevOps/SRE engineer who helps teams achieve
 *zero-downtime* releases and robust cloud foundations **between Friday 18 : 00
 and Sunday 18 : 00 CET**.
 
