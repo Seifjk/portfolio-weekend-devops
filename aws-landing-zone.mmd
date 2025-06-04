@@ -1,12 +1,34 @@
 flowchart LR
     classDef header fill:none,stroke:none,font-size:22px,font-weight:bold,text-align:center
-    daas["AWS Landing Zone – Multi-Account"]:::header
+    title["CI/CD – Zero-Downtime Pipeline"]:::header
 
-    org["<img src='https://api.iconify.design/mdi/cloud-lock.svg' width='38'><br/>Org&nbsp;Root / Payer"]
-    log["<img src='https://api.iconify.design/mdi/file-lock.svg' width='36'><br/>Log&nbsp;Archive"]
-    sec["<img src='https://api.iconify.design/mdi/shield-key.svg' width='36'><br/>Security"]
-    shared["<img src='https://api.iconify.design/mdi/server.svg' width='36'><br/>Shared&nbsp;Svcs"]
-    dev["<img src='https://api.iconify.design/mdi/flask.svg' width='34'><br/>Dev&nbsp;Account"]
-    prod["<img src='https://api.iconify.design/mdi/rocket.svg' width='34'><br/>Prod&nbsp;Account"]
+    subgraph Dev
+        dev["<img src='https://api.iconify.design/fa6-solid/user-gear.svg' width='32'> <br/>Developer push"]
+    end
 
-    org --> log & sec & shared & dev & prod
+    subgraph GitLab["<img src='https://api.iconify.design/logos/gitlab.svg' width='36'> <br/>GitLab CI"]
+        runner["Runner"]
+        stages["Build<br/>Test<br/>Scan"]
+    end
+
+    subgraph Argo["<img src='https://api.iconify.design/logos/argocd-icon.svg' width='36'> <br/>ArgoCD"]
+        sync["Sync"]
+        rollout["Blue/Green<br/>Rollout"]
+    end
+
+    subgraph K8s["<img src='https://api.iconify.design/logos/kubernetes.svg' width='36'> <br/>Prod Cluster"]
+        svc["Service"]
+        v1["Pod v1"]
+        v2["Pod v2"]
+    end
+
+    subgraph Obs["<img src='https://api.iconify.design/mdi/chart-line.svg' width='34'> <br/>Observability"]
+        graf["<img src='https://api.iconify.design/logos/grafana.svg' width='32'><br/>Grafana"]
+        prom["<img src='https://api.iconify.design/logos/prometheus.svg' width='32'><br/>Prometheus"]
+        loki["<img src='https://api.iconify.design/logos/loki.svg' width='32'><br/>Loki"]
+    end
+
+    dev --> runner --> stages --> sync --> rollout --> svc
+    svc -->|traffic| v1 & v2
+    v1 & v2 --> prom --> graf
+    v1 & v2 --> loki
