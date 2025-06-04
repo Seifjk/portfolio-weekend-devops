@@ -5,7 +5,3 @@
 .idea/
 .vscode/
 # binary artifacts
-*.png
-*.gif
-*.pdf
-*.docx
