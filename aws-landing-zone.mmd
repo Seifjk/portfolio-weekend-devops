@@ -1,34 +1,19 @@
 flowchart LR
-    classDef header fill:none,stroke:none,font-size:22px,font-weight:bold,text-align:center
-    title["CI/CD – Zero-Downtime Pipeline"]:::header
+    dev@{ label: "<img src=\"https://api.iconify.design/fa6-solid/user-gear.svg\" width=\"26\"><br>Dev" } --> pr["Pull&nbsp;Request"]
+    pr --> repo@{ label: "<img src=\"https://api.iconify.design/octicon/repo.svg\" width=\"28\"><br>GitOps&nbsp;Repo" }
+    repo --> ci@{ label: "<img src=\"https://api.iconify.design/logos/github-actions.svg\" width=\"28\"><br>CI&nbsp;Workflow" }
+    ci --> opa{"<br>OPA<br>PolicyGate"}
+    opa -- pass --> merge["Merge"]
+    merge --> argo@{ label: "<img src=\"https://api.iconify.design/simple-icons/argo.svg\" width=\"24\"><br>ArgoCD&nbsp;Sync" }
+    argo --> cluster@{ label: "<img src=\"https://api.iconify.design/logos/kubernetes.svg\" width=\"30\"><br>K8s" }
+    cluster --> gk@{ label: "<img src=\"https://api.iconify.design/material-icon-theme:opa.svg\" width=\"24\"><br>Gatekeeper" }
 
-    subgraph Dev
-        dev["<img src='https://api.iconify.design/fa6-solid/user-gear.svg' width='32'> <br/>Developer push"]
-    end
-
-    subgraph GitLab["<img src='https://api.iconify.design/logos/gitlab.svg' width='36'> <br/>GitLab CI"]
-        runner["Runner"]
-        stages["Build<br/>Test<br/>Scan"]
-    end
-
-    subgraph Argo["<img src='https://api.iconify.design/logos/argocd-icon.svg' width='36'> <br/>ArgoCD"]
-        sync["Sync"]
-        rollout["Blue/Green<br/>Rollout"]
-    end
-
-    subgraph K8s["<img src='https://api.iconify.design/logos/kubernetes.svg' width='36'> <br/>Prod Cluster"]
-        svc["Service"]
-        v1["Pod v1"]
-        v2["Pod v2"]
-    end
-
-    subgraph Obs["<img src='https://api.iconify.design/mdi/chart-line.svg' width='34'> <br/>Observability"]
-        graf["<img src='https://api.iconify.design/logos/grafana.svg' width='32'><br/>Grafana"]
-        prom["<img src='https://api.iconify.design/logos/prometheus.svg' width='32'><br/>Prometheus"]
-        loki["<img src='https://api.iconify.design/logos/loki.svg' width='32'><br/>Loki"]
-    end
-
-    dev --> runner --> stages --> sync --> rollout --> svc
-    svc -->|traffic| v1 & v2
-    v1 & v2 --> prom --> graf
-    v1 & v2 --> loki
+    dev@{ shape: rect}
+    repo@{ shape: rect}
+    ci@{ shape: rect}
+    argo@{ shape: rect}
+    cluster@{ shape: rect}
+    gk@{ shape: rect}
+     cluster:::blue
+    classDef blue fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px,radius:4px
+    classDef pink fill:#fce4ec,stroke:#d81b60,stroke-width:2px,radius:4px
