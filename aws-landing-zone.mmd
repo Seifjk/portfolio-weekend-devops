@@ -1,19 +1,31 @@
-flowchart LR
-    dev@{ label: "<img src=\"https://api.iconify.design/fa6-solid/user-gear.svg\" width=\"26\"><br>Dev" } --> pr["Pull&nbsp;Request"]
-    pr --> repo@{ label: "<img src=\"https://api.iconify.design/octicon/repo.svg\" width=\"28\"><br>GitOps&nbsp;Repo" }
-    repo --> ci@{ label: "<img src=\"https://api.iconify.design/logos/github-actions.svg\" width=\"28\"><br>CI&nbsp;Workflow" }
-    ci --> opa{"<br>OPA<br>PolicyGate"}
-    opa -- pass --> merge["Merge"]
-    merge --> argo@{ label: "<img src=\"https://api.iconify.design/simple-icons/argo.svg\" width=\"24\"><br>ArgoCD&nbsp;Sync" }
-    argo --> cluster@{ label: "<img src=\"https://api.iconify.design/logos/kubernetes.svg\" width=\"30\"><br>K8s" }
-    cluster --> gk@{ label: "<img src=\"https://api.iconify.design/material-icon-theme:opa.svg\" width=\"24\"><br>Gatekeeper" }
+flowchart TB
+ subgraph Guardrails["Guardrails"]
+        sso@{ label: "<img src=\"https://api.iconify.design/logos/aws-iam.svg\" width=\"24\"><br>AWS SSO" }
+        scp@{ label: "<img src=\"https://api.iconify.design/logos/aws-opsworks.svg\" width=\"24\"><br>SCPs" }
+        cfg@{ label: "<img src=\"https://api.iconify.design/logos/aws-config.svg\" width=\"24\"><br>AWS Config" }
+  end
+    payer["AWS Org<br>Payer"] --> loga@{ label: "<img src=\"https://api.iconify.design/simple-icons/awslambda.svg\" width=\"26\"><br>Log&nbsp;Archive" } & sec@{ label: "<img src=\"https://api.iconify.design/simple-icons/amazoncloudwatch.svg\" width=\"26\"><br>Security" } & shared@{ label: "<img src=\"https://api.iconify.design/mdi/server-network.svg\" width=\"28\"><br>Shared&nbsp;Services" } & dev["Dev&nbsp;Account"] & prod["Prod&nbsp;Account"]
+    sso --> dev & prod & shared
+    scp --> dev & prod
+    cfg --> dev & prod & shared
+    loga --> sec
 
-    dev@{ shape: rect}
-    repo@{ shape: rect}
-    ci@{ shape: rect}
-    argo@{ shape: rect}
-    cluster@{ shape: rect}
-    gk@{ shape: rect}
-     cluster:::blue
-    classDef blue fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px,radius:4px
-    classDef pink fill:#fce4ec,stroke:#d81b60,stroke-width:2px,radius:4px
+    loga@{ shape: rect}
+    sec@{ shape: rect}
+    shared@{ shape: rect}
+    sso@{ shape: rect}
+    scp@{ shape: rect}
+    cfg@{ shape: rect}
+     payer:::acc
+     loga:::acc
+     sec:::acc
+     shared:::acc
+     dev:::acc
+     prod:::acc
+     sso:::guard
+     scp:::guard
+     cfg:::guard
+    classDef acc fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px,radius:4px
+    classDef guard fill:#fff8e1,stroke:#ffa000,stroke-width:2px,radius:4px
+
+

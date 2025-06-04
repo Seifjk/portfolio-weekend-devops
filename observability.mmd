@@ -1,0 +1,39 @@
+flowchart LR
+ subgraph CI["<img src=https://api.iconify.design/logos/gitlab.svg width=36><br>GitLab&nbsp;CI"]
+        runner@{ label: "<img src=\"https://api.iconify.design/simple-icons/gitlab.svg\" width=\"28\"><br>Runner" }
+        stages{"Build<br>Test<br>Scan"}
+  end
+ subgraph CD["<img src=https://api.iconify.design/devicon:argocd.svg width=50><br>Argo&nbsp;CD"]
+        sync["Sync"]
+        rollout["Blue/Green<br>Rollout"]
+  end
+ subgraph Cluster["<img src=https://api.iconify.design/logos/kubernetes.svg width=34>Prod Cluster"]
+        svc["Service"]
+        v1["Pod&nbsp;v1"]
+        v2["Pod&nbsp;v2"]
+  end
+ subgraph Obs["Observability"]
+        prom@{ label: "<img src=\"https://api.iconify.design/logos/prometheus.svg\" width=\"30\"><br>Prometheus" }
+        graf@{ label: "<img src=\"https://api.iconify.design/logos/grafana.svg\" width=\"30\"><br>Grafana" }
+        loki@{ label: "<img src=\"https://api.iconify.design/oui:ws-observability.svg\"\ width=\"40\"><br>Loki" }
+  end
+    dev@{ label: "<img src=\"https://api.iconify.design/fa6-solid/user.svg\" width=\"32\"><br>Developer" } --> runner
+    runner --> stages
+    stages --> sync
+    sync --> rollout
+    rollout --> svc
+    svc --> v1 & v2
+    v1 --> prom & loki
+    v2 --> prom & loki
+    prom --> graf
+    title["CI/CD Pipeline (Zero Downtime)"]
+
+    runner@{ shape: rect}
+    prom@{ shape: rect}
+    graf@{ shape: rect}
+    loki@{ shape: rect}
+    dev@{ shape: rect}
+     title:::header
+    classDef header fill:none,stroke:none,font-size:22px,font-weight:bold,text-align:center
+
+

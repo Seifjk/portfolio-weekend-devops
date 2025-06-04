@@ -1,12 +1,16 @@
 flowchart LR
-    classDef header fill:none,stroke:none,font-size:22px,font-weight:bold,text-align:center
-    daas["GitOps Flow – OPA Policy Gate"]:::header
+    classDef blue fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px,radius:4px
+    classDef pink fill:#fce4ec,stroke:#d81b60,stroke-width:2px,radius:4px
 
-    dev["<img src='https://api.iconify.design/fa6-solid/code-compare.svg' width='34'><br/>Pull&nbsp;Request"]
-    repo["<img src='https://api.iconify.design/mdi/source-repository.svg' width='38'><br/>Git&nbsp;Repo"]
-    action["<img src='https://api.iconify.design/logos/github-icon.svg' width='38'><br/>CI&nbsp;Action"]
-    opa["<img src='https://api.iconify.design/simple-icons/openpolicyagent.svg' width='38'><br/>OPA&nbsp;Conftest"]
-    argo["<img src='https://api.iconify.design/logos/argocd-icon.svg' width='40'><br/>ArgoCD"]
-    k8s["<img src='https://api.iconify.design/logos/kubernetes.svg' width='40'><br/>Cluster"]
+    dev["<img src='https://api.iconify.design/fa6-solid/user-gear.svg' width='26'><br/>Dev"]
+    pr["Pull&nbsp;Request"]
+    repo["<img src='https://api.iconify.design/octicon/repo.svg' width='28'><br/>GitOps&nbsp;Repo"]
+    ci["<img src='https://api.iconify.design/logos/github-actions.svg' width='28'><br/>CI&nbsp;Workflow"]
+    opa{"<img src='https://api.iconify.design/simple-icons/openpolicyagent.svg' width='24'><br/>OPA<br/>Policy&nbsp;Gate"}
+    merge["Merge"]
+    argo["<img src='https://api.iconify.design/simple-icons/argo.svg' width='24'><br/>ArgoCD&nbsp;Sync"]
+    cluster["<img src='https://api.iconify.design/logos/kubernetes.svg' width='30'><br/>K8s"]:::blue
+    gk["<img src='https://api.iconify.design/simple-icons/openpolicyagent.svg' width='24'><br/>Gatekeeper"]:::pink
 
-    dev --> repo --> action --> opa --> argo --> k8s
+    dev --> pr --> repo --> ci --> opa
+    opa -- pass --> merge --> argo --> cluster --> gk
