@@ -20,7 +20,7 @@ and Sunday 18 : 00 CET**.
 
 ### CI/CD Pipeline
 
-![CI/CD pipeline with GitLab CI, Argo CD and Kubernetes](diagrams/cicd.png)
+![CI/CD pipeline with GitLab CI, Argo CD and Kubernetes](diagrams/opa.png)
 
 ### AWS Landing Zone
 
