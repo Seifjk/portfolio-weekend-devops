@@ -65,7 +65,7 @@ _Also available Mon–Thu 20:00–22:00 CET for small, quick tasks._
 |-----------------|---------------------------------------------------|
 | **Malt**        | [Malt](https://www.malt.de/profile/seifeddineshili)             |
 | **Freelancermap** | [Freelancermap](https://www.freelancermap.de/profil/seif-eddine-shili)   |
-| **LinkedIn**    | [Linkedin][https://www.malt.de/profile/seifeddineshili)       |
+| **LinkedIn**    | [Linkedin](https://www.linkedin.com/in/seifeddineshili/)       |
 | **Email**       | seifeddineshili2@gmail.com                                |
 
 ---
