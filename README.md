@@ -64,10 +64,9 @@ _Also available Mon–Thu 20:00–22:00 CET for small, quick tasks._
 | Channel         | Link                                              |
 |-----------------|---------------------------------------------------|
 | **Malt**        | <https://www.malt.de/profile/your-id>             |
-| **Freelancermap** | <https://www.freelancermap.de/profil/your-id>    |
-| **Upwork**      | *Project Catalog:* “Helm Chart Security Audit”     |
-| **LinkedIn**    | <https://www.linkedin.com/in/yourprofile>         |
-| **Email**       | devops@example.com                                |
+| **Freelancermap** | <[https://www.freelancermap.de/profil/your-id](https://www.freelancermap.de/profil/seif-eddine-shili)>    |
+| **LinkedIn**    | <https://www.linkedin.com/in/seifeddineshili>         |
+| **Email**       | seifeddineshili2@gmail.com                                |
 
 ---
 
